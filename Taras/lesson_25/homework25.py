@@ -42,6 +42,7 @@ class UnorderedList:
             index -= 1
         raise ValueError(f"Item '{item}' not found in the list.")  # if the item is not found, raise a ValueError
     # def index(self, item):
+    #       test
     #     current = self.head
     #     index = 0
     #     while current is not None:
