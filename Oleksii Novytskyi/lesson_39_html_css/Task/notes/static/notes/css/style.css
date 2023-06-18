@@ -1,0 +1,36 @@
+/* Встановлення кольору фону */
+body {
+  background-color: #ffffff;
+  background-image: url('moto.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+h1 {
+  margin-left: 220px;
+  font-family: Italic, sans-serif;
+  /*font-weight: bold;*/
+}
+h6 {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-family: Italic, sans-serif;
+}
+
+p {
+  margin-left: 200px;
+  font-family: ItalicT, sans-serif
+}
+
+/* Встановлення кольору тексту */
+p {
+  color: white;
+}
+
+/* Встановлення кольору заголовків */
+h1 {
+  color: white;
+}
+
