@@ -1,0 +1,7 @@
+{% extends 'notes/base.html' %}
+
+{% block content %}
+  <h1>Главная страница</h1>
+  <p>Добро пожаловать в записную книжку!</p>
+  <p><a href="{% url 'note_list' %}">Перейти к списку заметок</a></p>
+{% endblock %}

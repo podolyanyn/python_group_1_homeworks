@@ -1,0 +1,17 @@
+{% extends 'notes/base.html' %}
+
+{% block content %}
+  <h1>Записная книжка</h1>
+  <a href="{% url 'create_note' %}">Создать новую заметку</a>
+
+  <ul>
+    {% for note in notes %}
+      <li>{{ note.title }} - {{ note.created_at }}</li>
+      <li><a href="{% url 'view_note' note_id=note.id %}">Просмотреть</a></li>
+    {% empty %}
+      <li>Нет заметок</li>
+    {% endfor %}
+  </ul>
+
+    <a href="{% url 'index' %}">Назад на главную</a>
+{% endblock %}
