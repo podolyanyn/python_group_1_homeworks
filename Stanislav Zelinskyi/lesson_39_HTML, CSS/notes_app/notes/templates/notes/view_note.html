@@ -1,0 +1,7 @@
+{% extends 'notes/base.html' %}
+
+{% block content %}
+  <h1>{{ note.title }}</h1>
+  <p>{{ note.content }}</p>
+  <p><a href="{% url 'note_list' %}">Назад к списку заметок</a></p>
+{% endblock %}
