@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'notes/css/style.css' %}">
+</head>
+<body>
+<h1> Hello my friends, it's time to note somthing ;) </h1>
+<p> 1) Note1 </p>
+<p> 2) Note2 </p>
+<p> 3) Note3 </p>
+<p> 4) Note4 </p>
+<p> 6) Note5 </p>
+<h6> Feel free as much as you want ;) </h6>
+{% if notes_list %}
+    <ol>
+    {% for note in notes_list %}
+        <li>{{ note }}</li>
+    {% endfor %}
+    </ol>
+{% else %}
+    <p>No notes are available.</p>
+{% endif %}
+
+</body>
+</html>
