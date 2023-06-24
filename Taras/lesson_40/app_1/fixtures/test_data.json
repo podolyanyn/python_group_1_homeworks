@@ -1,0 +1,36 @@
+[
+  {
+    "model": "app_1.category",
+    "pk": 1,
+    "fields": {
+      "title": "Category 1"
+    }
+  },
+  {
+    "model": "app_1.category",
+    "pk": 2,
+    "fields": {
+      "title": "Category 2"
+    }
+  },
+  {
+    "model": "app_1.note",
+    "pk": 1,
+    "fields": {
+      "title": "Note 1",
+      "text": "Lorem ipsum dolor sit amet.",
+      "reminder": null,
+      "category": 1
+    }
+  },
+  {
+    "model": "app_1.note",
+    "pk": 2,
+    "fields": {
+      "title": "Note 2",
+      "text": "Consectetur adipiscing elit.",
+      "reminder": null,
+      "category": 2
+    }
+  }
+]

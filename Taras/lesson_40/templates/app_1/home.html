@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Головна сторінка</title>
+</head>
+<body>
+    <h1>Список нотаток</h1>
+    <ul>
+        {% for note in notes %}
+            <li>{{ note.title }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
