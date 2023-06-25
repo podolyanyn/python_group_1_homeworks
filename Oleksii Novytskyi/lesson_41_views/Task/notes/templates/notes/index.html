@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'notes/css/style.css' %}">
+</head>
+<body>
+<h1> Hello my friends, it's time to note something ;) </h1>
+
+<h6> Feel free as much as you want ;) </h6>
+
+<div>
+    <table>
+        <thead>
+            <tr>
+                <th>Categories</th>
+                <th>Title</th>
+                <th>Text</th>
+                <th>Reminder</th>
+                <th>Actions</th>
+
+            </tr>
+        </thead>
+        <tbody>
+
+            {% for note in data %}
+
+                <tr>
+                    <td>{{ note.categories.title }}</td>
+                    <td>{{ note.title }}</td>
+                    <td>{{ note.text }}</td>
+                    <td>{{ note.reminder }}</td>
+<!--                    <td><button onclick="redirectToPage_d()">Видалити нотатку</button> <button onclick="redirectToPage_c()">Редагувати нотатку</button> </td>-->
+                    <td><form action="{% url 'notes:delete' note.id %}" method="post">
+                        {% csrf_token %}
+                        <input class="my-button" type="submit" value="Видалити">
+                        </form>
+                        <form action="{% url 'notes:correct' note.id %}" method="get">
+                        {% csrf_token %}
+                        <input class="my-button" type="submit" value="Редагувати запис">
+                        </form>
+                    </td>
+
+                </tr>
+
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<form action="{% url 'notes:filter' %}">
+
+  <input type="text" name="category" placeholder="Сategory">
+  <input type="text" name="title" placeholder="Title">
+  <input type="text" name="reminder" placeholder="Reminder">
+  <input class="my-button" type="submit" value="Фільтрувати">
+
+</form>
+
+<form action="{% url 'notes:find' %}">
+
+  <input type="text" name="title" placeholder="Title">
+  <input class="my-button" type="submit" value="Знайти">
+
+</form>
+
+<button class="my-button" onclick="redirectToPage()">Створити нотатку</button>
+
+<script>
+    function redirectToPage() {
+        // Зміна URL
+        window.location.href = "http://127.0.0.1:8000/notes/create/";
+    }
+</script>
+
+</body>
+</html>
