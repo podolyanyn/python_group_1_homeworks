@@ -1,0 +1,44 @@
+table {
+  border-collapse: collapse;
+  width: 50%;
+  margin-left: 400px;
+  margin-right: 400px;
+}
+
+table th, table td {
+  border: 1px solid white !important;
+  padding: 8px;
+  color: white !important;
+}
+/* Встановлення кольору фону */
+body {
+  background-color: #ffffff;
+  background-image: url('moto.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+h1 {
+  margin-left: 220px;
+  font-family: Italic, sans-serif;
+}
+
+h6 {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  transform: translate(-50%, -50%);
+  color: #ffffff; /* Змініть "#ffffff" на бажаний колір тексту */
+  font-family: Italic, sans-serif;
+}
+
+p {
+  margin-left: 200px;
+  font-family: ItalicT, sans-serif;
+  color: #ffffff; /* Змініть "#ffffff" на бажаний колір тексту */
+}
+
+/* Встановлення кольору тексту заголовків */
+h1 {
+  color: #ffffff; /* Змініть "#ffffff" на бажаний колір тексту */
+}
