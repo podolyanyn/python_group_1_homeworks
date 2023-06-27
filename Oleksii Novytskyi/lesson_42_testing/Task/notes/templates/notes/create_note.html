@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'notes/css/style.css' %}">
+</head>
+<body>
+<form action= "" >
+{% csrf_token %}
+    {{ form.as_p }}
+    <button class="my-button" type="submit">Зберегти</button>
+    <button class="my-button" onclick="redirectToPage()">Повернутись назад</button>
+</form>
+<script>
+    function redirectToPage() {
+        // Зміна URL
+        window.location.href = "http://127.0.0.1:8000/notes/";
+    }
+</script>
+</body>
+</html>
