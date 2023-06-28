@@ -6,6 +6,8 @@ from django.template import loader
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from .forms import NotesForm
+from django_filters.views import FilterView
+from .filters import ProductFilter
 
 
 # def index(request):
@@ -63,8 +65,13 @@ def filter_notes(request):
     category = request.GET.get('category').capitalize()
     title = request.GET.get('title').capitalize()
     reminder = request.GET.get('reminder').capitalize()
-    # categories = Categories.objects.all()
+    # categories = Notes.objects.select_related('categories').all()
     filtered_notes = Notes.objects.all()
+
+    # print('Categories:', categories)
+    # print('Category Titles:')
+    # for category in categories:
+    #     print(category.title)
 
     if category:
         filtered_notes = filtered_notes.filter(categories__title=category)
@@ -89,7 +96,13 @@ def find_notes(request):
 
     return render(request, 'notes/find_notes.html', {'notes': filtered_notes})
 
-
-
+# class ProductListView(FilterView):
+#     model = Notes
+#     template_name = 'notes/index.html'
+#     paginate_by = 10
+#     filterset_class = ProductFilter
+#
+#
+# filter_notes()
 
 
