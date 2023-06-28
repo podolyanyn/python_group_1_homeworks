@@ -1,0 +1,5 @@
+<form method="POST" action="{% url 'notes:create_note' %}">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">create</button>
+</form>
