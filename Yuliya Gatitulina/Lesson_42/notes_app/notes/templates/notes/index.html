@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>notes</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'notes/css/style.css' %}">
+      </head>
+    <body>
+        <h2>MY NOTES: </h2>
+        {% csrf_token %}
+        {{ form.as_p }}
+        {% if notes %}
+            <ul>
+            {% for note in notes %}
+                <li>{{ note }}</li>
+                <div class="inp">
+                <form action="http://127.0.0.1:8000/notes/{{note.id}}/change/">
+                <button class="button_for_string">Change</button>
+                </form>
+                <form action="http://127.0.0.1:8000/notes/{{note.id}}/delete/">
+                <button class="button_for_string">Delete</button>
+                </form>
+                </div>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <p>No notes are available.</p>
+        {% endif %}
+            <form action="http://127.0.0.1:8000/notes/new/">
+            <button class="button">Add a new note</button>
+            </form>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
