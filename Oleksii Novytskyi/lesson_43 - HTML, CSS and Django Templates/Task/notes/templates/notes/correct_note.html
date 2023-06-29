@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'notes/css/style.css' %}">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'app_1/style.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<body>
+
+<nav class="navbar navbar-expand-sm navbar-white bg-white">
+  <div class="container-fluid">
+    <img src="https://beetroot.co/wp-content/uploads/sites/2/2019/12/Beetroot-Logo_450x450px.png" alt="Логотип" width="50" height="50" class="logo">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mynavbar">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'notes:notes' %}">HOME</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'notes:create' %}">Створити нотатку</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="javascript:void(0)">Ваш варіант ;)</a>
+        </li>
+      </ul>
+      <form class="d-flex" action="{% url 'notes:search' %}" method="GET">
+        <input class="form-control me-2" type="text" name="q" placeholder="В розробці :)">
+        <button class="my-button" type="button" onclick="redirectToPage_1()">Пошук</button>
+      </form>
+    </div>
+  </div>
+</nav>
+
+<div style="margin-top: 20px;">
+<form action= "" method="post">
+{% csrf_token %}
+    {{ form.as_p }}
+    <button class="my-button" type="submit">Зберегти</button>
+
+</form>
+</div>
+<button class="my-button" onclick="redirectToPage()">Повернутись назад</button>
+<script>
+    function redirectToPage() {
+        // Зміна URL
+        window.location.href = "{% url 'notes:notes' %}";
+    }
+</script>
+</body>
+</html>
