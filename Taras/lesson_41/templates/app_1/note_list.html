@@ -1,0 +1,14 @@
+<h1>Список нотаток</h1>
+<ul>
+  {% for note in notes %}
+  <li>
+    <a href="{% url 'note_details' note.id %}">{{ note.title }}</a>
+    <form action="{% url 'delete_note' note.id %}" method="POST" style="display: inline;">
+      {% csrf_token %}
+      <button type="submit">Видалити</button>
+    </form>
+  </li>
+  {% endfor %}
+</ul>
+<a href="{% url 'create_note' %}">Створити нотатку</a>
+
