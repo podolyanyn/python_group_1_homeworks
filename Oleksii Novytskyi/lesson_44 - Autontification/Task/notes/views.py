@@ -5,13 +5,14 @@ from .models import Notes, Categories
 from django.template import loader
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
-from .forms import NotesForm
+from .forms import NotesForm, RegistrationForm
 from django_filters.views import FilterView
 from .filters import ProductFilter
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import generic
 from django.db.models import Q
+from django.contrib.auth import login, logout, authenticate
 
 
 # def index(request):
@@ -25,12 +26,17 @@ def notes(request):
 
     return render(request, 'notes/index.html', {'data': notes})
 
-# class IndexView(LoginRequiredMixin, generic.ListView):
-#     template_name = 'notes/index.html'
-#     context_object_name = 'notes'
-#
-#     def get_queryset(self):
-#         return Notes.objects.filter(user=self.request.user)
+def sign_up(request):
+    if request.method == 'POST':
+        form = RegistrationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('/notes/')
+    else:
+        form = RegistrationForm()
+
+    return render(request, 'registration/sign_up.html', {'form': form})
 
 
 @login_required

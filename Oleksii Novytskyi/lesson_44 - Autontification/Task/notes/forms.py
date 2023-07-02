@@ -1,5 +1,7 @@
 from django import forms
 from .models import Notes, Categories
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 
 
 class NotesForm(forms.ModelForm):
@@ -8,13 +10,17 @@ class NotesForm(forms.ModelForm):
         fields = ['categories', 'title', 'text', 'reminder']
 
 
-# class SearchForm(forms.ModelForm):
-#     class Meta:
-#         model = Notes
-#         fields = ['category', 'title', 'content']
-#         widgets = {
-#             'category': forms.Select(attrs={'class': 'form-select'}),
-#             'title': forms.Select(attrs={'class': 'form-select'}),
-#             'reminder': forms.Select(attrs={'class': 'form-select'}),
-#         }
+class RegistrationForm(UserCreationForm):
+    email = forms.EmailField(required=True)
+
+    def __init__(self, *args, **kwargs):
+        super(RegistrationForm, self).__init__(*args, **kwargs)
+        self.fields['username'].widget.attrs.update({'class': 'help-text'})
+        self.fields['password1'].widget.attrs.update({'class': 'help-text'})
+        self.fields['password2'].widget.attrs.update({'class': 'help-text'})
+
+    class Meta:
+        model = User
+        fields = ["username", 'email', 'password1', 'password2']
+
 

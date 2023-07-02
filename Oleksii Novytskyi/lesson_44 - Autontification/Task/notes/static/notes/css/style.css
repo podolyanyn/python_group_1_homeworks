@@ -118,7 +118,11 @@
    /*Add any other styles you want */
 }
                 input[type="text"], input[type="password"] {
-  width: 200px; /* Задати ширину поля вводу */
+  width: 260px; /* Задати ширину поля вводу */
   height: 30px; /* Задати висоту поля вводу */
   font-size: 16px; /* Задати розмір шрифту */
+}
+
+    .my-form input::placeholder {
+  color: white; /* Змініть на бажаний колір тексту-підказки */
 }

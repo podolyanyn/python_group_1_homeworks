@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
      <meta charset="UTF-8">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -36,9 +37,12 @@
 
        {% if user.is_authenticated %}
      <li>User: {{ user.get_username }}</li>
-     <li><a href="{% url 'logout' %}?next={{ request.path }}" style="color: darkred;">Logout</a></li>
+     <li><a href="{% url 'logout' %}?next={{ request.path }}" style="color: darkred;">Вийти</a></li>
    {% else %}
-     <li><a href="{% url 'login' %}?next={{ request.path }}" style="color: darkred;">Login</a></li>
+          <div class="container-fluid" >
+<!--     <li><a href="/sign-up" style="color: darkred;">Зареєструватися</a></li>-->
+          <li><a href="{% url 'login' %}?next={{ request.path }}" style="color: darkred;">Вхід та реєстрація</a></li>
+               </div>
    {% endif %}
       </form>
     </div>

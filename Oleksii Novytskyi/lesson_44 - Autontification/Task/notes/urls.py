@@ -14,5 +14,6 @@ urlpatterns = [
     path('filter/', views.filter_notes, name='filter'),
     path('find/', views.find_notes, name='find'),
     path('search/', views.search, name='search'),
+    path('sign_up/', views.sign_up, name='sign_up'),
 
 ]

@@ -16,7 +16,7 @@
 <!--<div class=container style="margin-top: 20px;">-->
   {% if form.errors %}
 <div class=container style="margin-left: 200px;">
-    <h2>Your username and password didn't match. Please try again.</h2>
+    <h2>Щось не так з іменем користувача або паролем, спробуйте ще ;)</h2>
   </div>
   {% endif %}
 
@@ -34,12 +34,16 @@
 
 
 
-<div class=container style="margin-top: 40px;" >
+<div class=container style="margin-top: 50px;" >
   <form method="post"  action="{% url 'login' %}" style="color: white;">
     {% csrf_token %}
     {{ form.username|as_crispy_field }}
     {{ form.password|as_crispy_field }}
+    <div class=container style="margin-top: -20px;" >
     <input type="submit" class='my-button' value="Увійти">
+      </div>
+<!--    <input type="submit" class='my-button' onclick="redirectToPage()" value="Зареєструватися">-->
+<!--    <li><a href="/sign-up" style="color: white;">Зареєструватися</a></li>-->
 <!--    <table>-->
 <!--      <tr>-->
 <!--        <td>{{ form.username.label_tag }}</td>-->
@@ -59,7 +63,9 @@
   {# Assumes you setup the password_reset view in your URLconf #}
 <!--  <p><a href="{% url 'password_reset' %}">Lost password?</a></p>-->
   </div>
-
+  <div class=container style="margin-top: 50px;" >
+<input type="submit" class='my-button' onclick="redirectToPage()" value="Зареєструватися">
+</div>
 
 <!--  <body class="text-center">-->
 
@@ -86,6 +92,11 @@
 <!--    <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>-->
 <!--  </form>-->
 <!--</main>-->
-
+<script>
+    function redirectToPage() {
+        // Зміна URL
+        window.location.href = "{% url 'notes:sign_up' %}";
+    }
+</script>
 
 {% endblock %}
