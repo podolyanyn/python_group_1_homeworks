@@ -18,13 +18,12 @@ from .filters import ProductFilter
 
 def notes(request):
     notes = Notes.objects.select_related('categories').all()
-    # form = SearchForm(request.POST)
-    # if form.is_valid():
-    #     form.save()
-    #         # Редирект або інші дії після збереження форми
-    # else:
-    #     form = SearchForm()
-
+    # f = ProductFilter(request.GET, queryset=Notes.objects.all())
+    # categories = Categories.objects.values_list('title', flat=True)
+    # title = Notes.objects.values_list('title', flat=True)
+    # reminder = Notes.objects.values_list('reminder', flat=True)
+    # 'categories': categories, 'title': title, 'reminder': reminder
+    # , 'filter': f
     return render(request, 'notes/index.html', {'data': notes})
 
 
@@ -68,17 +67,12 @@ def correct_note(request, note_id):
 
 
 def filter_notes(request):
-
+    # f = ProductFilter(request.GET, queryset=Notes.objects.all())
     category = request.GET.get('category').capitalize()
     title = request.GET.get('title').capitalize()
     reminder = request.GET.get('reminder').capitalize()
-    # search_staff = {'form': SearchForm()}
-    filtered_notes = Notes.objects.all()
 
-    # if search_staff:
-    #     filtered_notes = filtered_notes.filter(categories__title=SearchForm.categories)
-        # filtered_notes = filtered_notes.filter(categories__title=SearchForm.title)
-        # filtered_notes = filtered_notes.filter(categories__title=SearchForm.reminder)
+    filtered_notes = Notes.objects.all()
 
     if category:
         filtered_notes = filtered_notes.filter(categories__title=category)
@@ -86,6 +80,7 @@ def filter_notes(request):
         filtered_notes = filtered_notes.filter(title__icontains=title)
     if reminder:
         filtered_notes = filtered_notes.filter(reminder__icontains=reminder)
+
 
     return render(request, 'notes/filter_notes.html', {'notes': filtered_notes})
 

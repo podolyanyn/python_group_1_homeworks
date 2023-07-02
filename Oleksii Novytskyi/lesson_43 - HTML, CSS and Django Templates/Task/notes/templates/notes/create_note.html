@@ -12,6 +12,8 @@
 </head>
 <body>
 
+
+
 <nav class="navbar navbar-expand-sm navbar-white bg-white">
   <div class="container-fluid">
     <img src="https://beetroot.co/wp-content/uploads/sites/2/2019/12/Beetroot-Logo_450x450px.png" alt="Логотип" width="50" height="50" class="logo">
@@ -38,16 +40,21 @@
   </div>
 </nav>
 
-<div style="margin-top: 20px;">
+<div class=container style="margin-top: 20px;">
+    <div class=c>
+    {% load crispy_forms_tags %}
 <form action= "" method="post">
 {% csrf_token %}
-    {{ form.as_p }}
+    {{ form|crispy }}
+<!--    {{ form.as_p }}-->
     <button class="my-button" type="submit">Зберегти</button>
 
 </form>
+        </div>
 </div>
-
+<div class=container style="margin-top: 20px;">
 <button class="my-button" onclick="redirectToPage()">Повернутись назад</button>
+    </div>
 <script>
     function redirectToPage() {
         // Зміна URL

@@ -88,17 +88,64 @@
         </tbody>
     </table>
 </div>
+
+
+
+<!--ФІЛЬТРУВАННЯ-->
+<!--<div class="col-md-3">-->
+<!--            &lt;!&ndash; Code for Filter form start&ndash;&gt;-->
+<!--            <a class="text-white text-sm mb-1" href="{% url 'notes:notes' %}">x Очистити фільтр</a>-->
+<!--            <form method="get">-->
+<!--                <div style="display: grid">-->
+<!--                    {% for field in filter.form %}-->
+<!--                        <div id="form-field-{{ forloop.counter0 }}">-->
+<!--                            {{ field.label_tag }}-->
+<!--                            {{ field }}-->
+<!--                        </div>-->
+<!--                    {% endfor %}-->
+<!--                </div>-->
+<!--                <button type="submit" class="my-button">Фільтрувати</button>-->
+<!--            </form>-->
+<!--            &lt;!&ndash; Code for Filter form end&ndash;&gt;-->
+<!--</div>-->
+
+
+<!--Випадаючі кнопки-->
+<!--<div style="margin-left: 20px;">-->
+<!--<form action="{% url 'notes:filter' %}" method="get">-->
+
+<!--                    <select name="category">-->
+<!--  {% for category in categories %}-->
+<!--    <option value="{{ category }}">{{ category }}</option>-->
+<!--  {% endfor %}-->
+<!--</select>-->
+<!--                    <select name="title">-->
+<!--  {% for t in title %}-->
+<!--    <option value="{{ t }}">{{ t }}</option>-->
+<!--  {% endfor %}-->
+<!--</select>-->
+<!--                    <select name="reminder">-->
+<!--  {% for r in reminder %}-->
+<!--    <option value="{{ r }}">{{ r }}</option>-->
+<!--  {% endfor %}-->
+<!--</select>-->
+<!--        <input class="my-button" type="submit" value="Фільтрувати">-->
+<!--</form>-->
+<!--</div>-->
+
+
+
 <div style="margin-left: 20px;">
-
 <form action="{% url 'notes:filter' %}">
-
 
     <input type="text" name="category" placeholder="Сategory">
     <input type="text" name="title" placeholder="Title">
     <input type="text" name="reminder" placeholder="Reminder">
     <input class="my-button" type="submit" value="Фільтрувати">
+
 </form>
 </div>
+
 
 <div style="margin-left: 20px;">
 <form action="{% url 'notes:find' %}">
