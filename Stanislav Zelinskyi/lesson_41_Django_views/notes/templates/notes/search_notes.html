@@ -1,0 +1,28 @@
+{% extends 'notes/base.html' %}
+
+{% block content %}
+  <h1>Результаты поиска</h1>
+  <form method="GET" action="{% url 'search_notes' %}">
+      <label>
+          <input type="text" name="query" placeholder="Введите заголовок заметки" value="{{ query }}">
+      </label>
+      <button type="submit">Поиск</button>
+  </form>
+
+  <h2>Результаты</h2>
+  <ul>
+    {% for note in notes %}
+      <li>
+        <a href="{% url 'view_note' note.id %}">{{ note.title }}</a>
+        <br>
+        Категория: {{ note.category }}
+        <br>
+        Дата напоминания: {{ note.reminder_date }}
+        <br>
+        Дата создания: {{ note.created_date }}
+      </li>
+    {% empty %}
+      <li>Нет результатов для данного поискового запроса.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

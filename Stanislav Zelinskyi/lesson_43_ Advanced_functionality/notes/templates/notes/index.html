@@ -1,0 +1,29 @@
+{% extends 'notes/base.html' %}
+
+{% block content %}
+  <p>Добро пожаловать в записную книжку!</p>
+  <div class="table-responsive">
+    <table class="table mt-4">
+      <thead>
+        <tr>
+          <th>Категория</th>
+          <th>Количество записей</th>
+          <th>Просмотр записей</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for category in categories %}
+          <tr>
+            <td>{{ category.title }}</td>
+            <td>{{ category.note_set.count }}</td>
+            <td><a href="{% url 'note_list' %}?category={{ category.id }}" class="btn btn-secondary btn-sm">Просмотреть</a></td>
+          </tr>
+        {% empty %}
+          <tr>
+            <td colspan="3">Нет категорий</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}
