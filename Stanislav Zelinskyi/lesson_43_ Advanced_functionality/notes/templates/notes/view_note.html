@@ -1,0 +1,17 @@
+{% extends 'notes/base.html' %}
+
+{% block content %}
+  <div class="container">
+    <div class="card">
+      <div class="card-body">
+        <h1 class="card-title">{{ note.title }}</h1>
+        <p class="card-text">{{ note.content }}</p>
+        <p class="card-subtitle">Нагадування: {{ note.reminder_date }} {{ note.reminder_time }}</p>
+        <p class="card-text">Категорія: {{ note.category }}</p>
+        <a href="{% url 'edit_note' note.id %}" class="btn btn-primary">Редагувати</a>
+        <a href="{% url 'delete_note' note.id %}" class="btn btn-danger">Видалити</a>
+        <a href="{% url 'note_list' %}" class="btn btn-secondary">Назад к списку заметок</a>
+      </div>
+    </div>
+  </div>
+{% endblock %}
