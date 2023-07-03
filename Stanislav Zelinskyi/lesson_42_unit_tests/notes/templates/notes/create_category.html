@@ -1,0 +1,26 @@
+{% extends 'notes/base.html' %}
+
+{% block content %}
+  <h1>Управление категориями</h1>
+  
+  <h2>Создать новую категорию</h2>
+  <form method="POST">
+    {% csrf_token %}
+      <label>
+          <input type="text" name="title" placeholder="Название категории" required>
+      </label>
+      <button type="submit">Создать</button>
+  </form>
+
+  <h2>Существующие категории</h2>
+  <ul>
+    {% for category in categories %}
+      <li>
+        {{ category.title }}
+        <a href="{% url 'delete_category' category.id %}">Удалить</a>
+      </li>
+    {% empty %}
+      <li>Нет категорий</li>
+    {% endfor %}
+  </ul>
+{% endblock %}
