@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+    {% load static %}
+
+    <link rel="stylesheet" type="text/css" href="{% static 'notes/css/style.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'notes/css/style.css' %}">
+
+</head>
+<body>
+
+<nav class="navbar navbar-expand-sm navbar-white bg-white">
+  <div class="container-fluid">
+    <img src="https://beetroot.co/wp-content/uploads/sites/2/2019/12/Beetroot-Logo_450x450px.png" alt="Логотип" width="50" height="50" class="logo">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mynavbar">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'notes:notes' %}">HOME</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'notes:create' %}">Створити нотатку</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="javascript:void(0)">Ваш варіант ;)</a>
+        </li>
+      </ul>
+      <form class="c" >
+
+       {% if user.is_authenticated %}
+<div class=container style="margin-top: 0px;">
+     <li style="color: black; list-style-type: none;">Вітаю: {{ user.get_username }}</li>
+     </div>
+<div class=container style="margin-top: 0px;">
+<!--    <p color=" black">Вітаю, {{ username }}!</p>-->
+     <li ><a href="{% url 'logout' %}?next={{ request.path }}" style="color: darkred;">Вийти</a></li>
+ </div>
+   {% else %}
+
+    <div class=container style="margin-top: 0px;">
+
+     <li><a href="{% url 'login' %}?next={{ request.path }}" style="color: darkred;">Увійти</a></li>
+   {% endif %}
+    </div>
+
+      </form>
+    </div>
+  </div>
+</nav>
+
+
+
+
+
+<h1> Hello my friends, it's time to note something ;) </h1>
+
+<h6> Feel free as much as you want ;) </h6>
+
+
+<div>
+    <table>
+        <thead>
+            <tr>
+                <th>Categories</th>
+                <th>Title</th>
+                <th>Text</th>
+                <th>Reminder</th>
+                <th>Actions</th>
+
+            </tr>
+        </thead>
+        <tbody>
+
+            {% for note in data %}
+
+                <tr>
+                    <td>{{ note.categories.title }}</td>
+                    <td>{{ note.title }}</td>
+                    <td>{{ note.text }}</td>
+                    <td>{{ note.reminder }}</td>
+
+<!--                    <td><button onclick="redirectToPage_d()">Видалити нотатку</button> <button onclick="redirectToPage_c()">Редагувати нотатку</button> </td>-->
+                    <td><form action="{% url 'notes:delete' note.id %}" method="post">
+                        {% csrf_token %}
+                        <input class="my-button" type="submit" value="Видалити">
+                        </form>
+                        <form action="{% url 'notes:correct' note.id %}" method="get">
+                        {% csrf_token %}
+                        <input class="my-button" type="submit" value="Редагувати запис">
+                        </form>
+                        <form action="{% url 'notes:to_telegram' note.id %}" method="post">
+                             {% csrf_token %}
+                        <button class="my-button">Надіслати телеграм боту</button>
+                            </form>
+                    </td>
+
+                </tr>
+
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+
+<!--ФІЛЬТРУВАННЯ-->
+<!--<div class="col-md-3">-->
+<!--            &lt;!&ndash; Code for Filter form start&ndash;&gt;-->
+<!--            <a class="text-white text-sm mb-1" href="{% url 'notes:notes' %}">x Очистити фільтр</a>-->
+<!--            <form method="get">-->
+<!--                <div style="display: grid">-->
+<!--                    {% for field in filter.form %}-->
+<!--                        <div id="form-field-{{ forloop.counter0 }}">-->
+<!--                            {{ field.label_tag }}-->
+<!--                            {{ field }}-->
+<!--                        </div>-->
+<!--                    {% endfor %}-->
+<!--                </div>-->
+<!--                <button type="submit" class="my-button">Фільтрувати</button>-->
+<!--            </form>-->
+<!--            &lt;!&ndash; Code for Filter form end&ndash;&gt;-->
+<!--</div>-->
+
+
+<!--Випадаючі кнопки-->
+<!--<div style="margin-left: 20px;">-->
+<!--<form action="{% url 'notes:filter' %}" method="get">-->
+
+<!--                    <select name="category">-->
+<!--  {% for category in categories %}-->
+<!--    <option value="{{ category }}">{{ category }}</option>-->
+<!--  {% endfor %}-->
+<!--</select>-->
+<!--                    <select name="title">-->
+<!--  {% for t in title %}-->
+<!--    <option value="{{ t }}">{{ t }}</option>-->
+<!--  {% endfor %}-->
+<!--</select>-->
+<!--                    <select name="reminder">-->
+<!--  {% for r in reminder %}-->
+<!--    <option value="{{ r }}">{{ r }}</option>-->
+<!--  {% endfor %}-->
+<!--</select>-->
+<!--        <input class="my-button" type="submit" value="Фільтрувати">-->
+<!--</form>-->
+<!--</div>-->
+
+
+
+<div style="margin-left: 20px;">
+<form action="{% url 'notes:filter' %}">
+
+    <input type="text" name="category" placeholder="Сategory">
+    <input type="text" name="title" placeholder="Title">
+    <input type="text" name="reminder" placeholder="Reminder">
+    <input class="my-button" type="submit" value="Фільтрувати">
+
+</form>
+</div>
+
+
+<div style="margin-left: 20px;">
+<form action="{% url 'notes:find' %}">
+
+  <input type="text" name="title" placeholder="Title">
+  <input class="my-button" type="submit" value="Знайти">
+
+</form>
+</div>
+
+<div style="margin-left: 20px;">
+<button class="my-button" onclick="redirectToPage()">Створити нотатку</button>
+</div>
+<!--<div style="margin-left: 20px;">-->
+<!--<button class="my-button" onclick="redirectToPage_2()">Надіслати телеграм боту</button>-->
+<!--</div>-->
+
+<script>
+    function redirectToPage() {
+        // Зміна URL
+        window.location.href = "{% url 'notes:create' %}";
+    }function redirectToPage_1() {
+        // Зміна URL
+        window.location.href = "{% url 'notes:search' %}";
+    }
+
+
+</script>
+
+</body>
+</html>
