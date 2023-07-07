@@ -7,30 +7,32 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #ffffff;
+    color: white;
   }
-  input#id_username::placeholder {
-    color: white; /* Змініть колір тексту підказки на бажаний */
-  }
+  /*input#id_username::placeholder {*/
+  /*  color: white; !* Змініть колір тексту підказки на бажаний *!*/
+  /*}*/
 
-  /* Зміна колору тексту підказок для пароля */
-  input#id_password1::placeholder,
-  input#id_password2::placeholder {
-    color: white; /* Змініть колір тексту підказки на бажаний */
-  }
+  /*!* Зміна колору тексту підказок для пароля *!*/
+  /*input#id_password1::placeholder,*/
+  /*input#id_password2::placeholder {*/
+  /*  color: white; !* Змініть колір тексту підказки на бажаний *!*/
+  /*}*/
+
 </style>
 
 {% load crispy_forms_tags %}
 
 
 
-<div class=container style="margin-top: 10px;" >
+<div class=container style="margin-top: 10px; " >
   <form method="post">
     {% csrf_token %}
     {{ form|crispy }}
 
 <!--    <input type="submit" class='my-button' value="Увійти">-->
-    <input type="submit" class='my-button' onclick="redirectToPage()" value="Зареєструватися">
+<!--    <input type="submit" class='my-button' onclick="redirectToPage()" value="Зареєструватися">-->
+    <input type="submit" class='my-button' onclick="/sign_up" value="Зареєструватися">
 
   </form>
 
@@ -40,13 +42,13 @@
 
 
 
-<script>
-    function redirectToPage() {
-        // Зміна URL
-        window.location.href = "/sign_up";
-    }
+<!--<script>-->
+<!--    function redirectToPage() {-->
+<!--        // Зміна URL-->
+<!--        window.location.href = "/sign_up";-->
+<!--    }-->
 
 
-</script>
+<!--</script>-->
 
 {% endblock %}

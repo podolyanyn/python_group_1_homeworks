@@ -4,6 +4,7 @@
 
             background-color: #ffffff;
             background-image: url('moto.jpg');
+            background-attachment: fixed;
             background-repeat: no-repeat;
             background-size: cover;
         }
@@ -122,7 +123,11 @@
   height: 30px; /* Задати висоту поля вводу */
   font-size: 16px; /* Задати розмір шрифту */
 }
+    .form-text {
+        color: white;
+    }
 
-    .my-form input::placeholder {
-  color: white; /* Змініть на бажаний колір тексту-підказки */
-}
+#div_id_categories .asteriskField{display:none;}
+#div_id_title .asteriskField{display:none;}
+#div_id_text .asteriskField{display:none;}
+#div_id_reminder .asteriskField{display:none;}

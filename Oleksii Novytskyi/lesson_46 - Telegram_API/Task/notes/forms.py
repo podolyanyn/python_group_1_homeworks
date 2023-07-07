@@ -15,9 +15,9 @@ class RegistrationForm(UserCreationForm):
 
     def __init__(self, *args, **kwargs):
         super(RegistrationForm, self).__init__(*args, **kwargs)
-        self.fields['username'].widget.attrs.update({'class': 'help-text'})
-        self.fields['password1'].widget.attrs.update({'class': 'help-text'})
-        self.fields['password2'].widget.attrs.update({'class': 'help-text'})
+        self.fields['username'].widget.attrs.update({'class': 'help-text', 'style': 'color: black'})
+        self.fields['password1'].widget.attrs.update({'class': 'help-text', 'style': 'color: black'})
+        self.fields['password2'].widget.attrs.update({'class': 'help-text', 'style': 'color: black'})
 
     class Meta:
         model = User
