@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'notes/css/style.css' %}">
+</head>
+<body>
+<div>
+    <table>
+        <thead>
+            <tr>
+                <th>Categories</th>
+                <th>Title</th>
+                <th>Text</th>
+                <th>Reminder</th>
+                <th>Actions</th>
+
+            </tr>
+        </thead>
+        <tbody>
+
+            {% for note in notes %}
+
+                <tr>
+                    <td>{{ note.categories.title }}</td>
+                    <td>{{ note.title }}</td>
+                    <td>{{ note.text }}</td>
+                    <td>{{ note.reminder }}</td>
+<!--                    <td><button onclick="redirectToPage_d()">Видалити нотатку</button> <button onclick="redirectToPage_c()">Редагувати нотатку</button> </td>-->
+                    <td><form action="{% url 'notes:delete' note.id %}" method="post">
+                        {% csrf_token %}
+                        <input class="my-button" type="submit" value="Видалити">
+                        </form>
+                        <form action="{% url 'notes:correct' note.id %}" method="get">
+                        {% csrf_token %}
+                        <input class="my-button" type="submit" value="Редагувати запис">
+                        </form>
+                    </td>
+
+                </tr>
+
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<button class="my-button" onclick="redirectToPage()">Повернутись назад</button>
+<script>
+    function redirectToPage() {
+        // Зміна URL
+        window.location.href = "http://127.0.0.1:8000/notes/";
+
+    }
+</script>
+</body>
+</html>
