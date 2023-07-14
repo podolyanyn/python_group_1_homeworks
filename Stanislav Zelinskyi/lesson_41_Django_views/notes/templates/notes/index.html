@@ -1,0 +1,35 @@
+{% extends 'notes/base.html' %}
+
+{% block content %}
+  <h1>Главная страница</h1>
+    <form method="GET" action="{% url 'search_notes' %}">
+        <label>
+            <input type="text" name="query" placeholder="Введите заголовок заметки">
+        </label>
+        <button type="submit">Поиск</button>
+  </form>
+  <p>Добро пожаловать в записную книжку!</p>
+  <p><a href="{% url 'note_list' %}">Перейти к списку заметок</a></p>
+    <table>
+    <thead>
+      <tr>
+        <th>Категория</th>
+        <th>Количество записей</th>
+        <th>Просмотр записей</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for category in categories %}
+        <tr>
+          <td>{{ category.title }}</td>
+          <td>{{ category.note_set.count }}</td>
+          <td><a href="{% url 'note_list' %}?category={{ category.id }}">Просмотреть</a></td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="3">Нет категорий</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

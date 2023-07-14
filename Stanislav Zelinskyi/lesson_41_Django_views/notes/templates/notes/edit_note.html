@@ -1,0 +1,13 @@
+<!-- Файл edit_note.html -->
+
+{% extends 'notes/base.html' %}
+
+{% block content %}
+  <h1>Редагувати заметку</h1>
+  <form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Зберегти</button>
+  </form>
+  <a href="{% url 'view_note' note.id %}">Назад до деталей заметки</a>
+{% endblock %}

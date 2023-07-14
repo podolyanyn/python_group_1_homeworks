@@ -1,0 +1,13 @@
+<!-- Файл delete_note.html -->
+
+{% extends 'notes/base.html' %}
+
+{% block content %}
+  <h1>Видалити заметку</h1>
+  <p>Ви впевнені, що хочете видалити заметку "{{ note.title }}"?</p>
+  <form method="POST">
+    {% csrf_token %}
+    <button type="submit">Видалити</button>
+  </form>
+  <a href="{% url 'view_note' note.id %}">Скасувати</a>
+{% endblock %}

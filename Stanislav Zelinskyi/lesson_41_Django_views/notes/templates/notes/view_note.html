@@ -1,0 +1,11 @@
+{% extends 'notes/base.html' %}
+
+{% block content %}
+  <h1>{{ note.title }}</h1>
+  <p>{{ note.content }}</p>
+  <p>Нагадування: {{ note.reminder_date }} {{ note.reminder_time }}</p>
+  <p>Категорія: {{ note.category }}</p>
+  <a href="{% url 'edit_note' note.id %}">Редагувати</a>
+  <a href="{% url 'delete_note' note.id %}">Видалити</a>
+  <a href="{% url 'note_list' %}">Назад к списку заметок</a>
+{% endblock %}
