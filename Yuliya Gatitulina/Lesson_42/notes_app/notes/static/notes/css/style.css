@@ -1,0 +1,30 @@
+
+* {color:dimgrey; background-color: azure}
+h2 {color: #5b80b2; font-weight: bold}
+.button {
+    background-color: #79aec8;
+    border: none;
+    color: white;
+    padding: 15px 40px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.button_for_string {
+    background-color: #79aec8;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+.inp{display:  flex;}
+
