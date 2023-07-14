@@ -1,0 +1,10 @@
+<form method="POST" action="{% url 'notes:note_detail' note.id %}">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">save</button>
+</form>
+
+<form method="POST" action="{% url 'notes:delete_note' note.id %}">
+  {% csrf_token %}
+  <button type="submit">delete</button>
+</form>
