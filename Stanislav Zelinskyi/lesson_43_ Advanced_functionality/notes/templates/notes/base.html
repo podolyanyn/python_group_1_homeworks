@@ -1,0 +1,71 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- INCLUDE CSS -->
+  <link href="{% static 'src/bootstrap/css/bootstrap.min.css' %}" type="text/css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+  <title>Записная книжка</title>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="{% url 'index' %}">Notes App</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Переключатель навигации">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'index' %}">Главная</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'note_list' %}">All Notes</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Menu
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="{% url 'create_category' %}">Category</a></li>
+                  <li><a class="dropdown-item" href="{% url 'filter_notes' %}">Filter</a></li>
+                </ul>
+              </li>
+            </ul>
+            <form class="d-flex" role="search" method="GET" action="{% url 'search_notes' %}">
+              <input class="form-control me-2" type="text" placeholder="Введите заголовок заметки" aria-label="search" name="query">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <div class="row">
+      <div class="col-md-3">
+        <div class="sidebar">
+          {% block sidebar %}
+          {% endblock %}
+        </div>
+      </div>
+      <div class="col-md-9">
+        <div class="main">
+          {% block content %}
+          {% endblock %}
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      {% block footer %}
+      {% endblock %}
+    </div>
+  </div>
+
+  <!-- INCLUDE JS -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
+</body>
+</html>
