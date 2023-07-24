@@ -1,0 +1,8 @@
+<h1>Deleting note "{{ note.title }}"</h1>
+
+<form method="POST" action="">
+  {% csrf_token %}
+    <p>Are you sure you want to delete this note?</p>
+  {{ form.as_p }}
+  <button type="submit">Delete</button>
+</form>
