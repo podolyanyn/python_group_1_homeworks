@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Notes</title>
+</head>
+<body>
+{% if notes %}
+    <h1>The list of notes</h1>
+
+    <ol>
+    {% for note in notes %}
+        <li>{{note.title}}: {{note.text}}</li>
+    {% endfor %}
+    </ol>
+{% else %}
+    <p>No notes here</p>
+{% endif %}
+</body>
+</html>
